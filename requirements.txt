@@ -1,0 +1,17 @@
+streamlit
+langchain==0.0.343
+langchain-community
+pypdf
+faiss-cpu
+python-dotenv
+sentence-transformers
+python-docx
+pdfkit
+markdown
+matplotlib
+pandas
+uvicorn
+fastapi
+ragas[all]
+datasets
+pydantic==1.10.18

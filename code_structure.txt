@@ -1,0 +1,20 @@
+rca_genai_project/
+├── app/
+│   ├── __init__.py
+│   ├── ingestion.py           # Extract text from PDF, PPT, DOCX
+│   ├── chunking.py            # Split text into chunks
+│   ├── embedding.py           # Generate embeddings & store in FAISS
+│   ├── retriever.py           # Retrieve similar RCA chunks
+│   ├── generator.py           # Generate refined RCA using LLM
+│   ├── exporter.py            # Generate PDF from RCA report
+│   └── ui.py                  # (Optional) Streamlit/Flask UI
+├── data/
+│   ├── raw_docs/              # Upload original PDF/PPT/DOCX here
+│   └── processed_chunks.json  # Intermediate processed data
+├── output/
+│   └── refined_rca.pdf        # Final generated RCA PDFs
+├── ollama/
+│   └── models_config.txt      # Notes on using LLaMA2/Mistral locally
+├── main.py                    # Orchestrates the whole process
+├── requirements.txt           # All required libraries
+└── README.md
