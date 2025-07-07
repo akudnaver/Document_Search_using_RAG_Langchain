@@ -29,7 +29,11 @@ def main():
             temp_path = tmp.name
 
         # Extract text
+<<<<<<< HEAD
         st.subheader("📄 Extracted Text Preview")
+=======
+        # st.subheader("📄 Extracted Text Preview")
+>>>>>>> ea85495 (update)
         if ext == "pdf":
             text = extract_from_pdf(temp_path)
         elif ext == "pptx":
@@ -40,10 +44,18 @@ def main():
             st.error("Unsupported file type.")
             return
 
+<<<<<<< HEAD
         st.text_area("Raw Document Text", text[:3000], height=300)
 
         # Chunk and create embeddings
         chunks = chunk_text(text)
+=======
+        # st.text_area("Raw Document Text", text[:3000], height=300)
+
+        # Chunk and create embeddings
+        chunks = chunk_text(text)
+        OLLAMA_URL = "http://ollama:11434/api/embeddings"
+>>>>>>> ea85495 (update)
         db = create_embeddings(chunks)
 
         # Ask query

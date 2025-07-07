@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  ollama:
+    container_name: ollama
+    image: ollama/ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ./ollama:/root/.ollama
+    environment:
+      - OLLAMA_NO_SSL_VERIFY=1
+    command: >
+      sh -c "ollama serve & sleep 2 && ollama run llama3 && ollama run nomic-embed-text && tail -f /dev/null"
+    restart: unless-stopped
+    networks:
+      - internal-net
+
+  streamlit-app:
+    container_name: rca_streamlit-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"
+    depends_on:
+      - ollama
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+    volumes:
+      - .:/app
+      - ./ollama:/root/.ollama
+    working_dir: /app
+    restart: unless-stopped
+    networks:
+      - internal-net
+
+networks:
+  internal-net:
+    driver: bridge
